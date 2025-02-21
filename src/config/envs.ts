@@ -6,11 +6,7 @@ interface EnvVars {
   //NATS SERVICE
   NATS_SERVERS: string[];
   //DATABASE
-  DB_HOST: string;
-  DB_PORT: number;
-  DB_NAME: string;
-  DB_USER: string;
-  DB_PASSWORD: string;
+  POSTGRES_URL: string;
 }
 
 const envsSchema = joi
@@ -19,11 +15,7 @@ const envsSchema = joi
     //NATS SERVICE
     NATS_SERVERS: joi.array().items(joi.string()).required(),
     //DATABASE
-    DB_HOST: joi.string().required(),
-    DB_PORT: joi.number().required(),
-    DB_NAME: joi.string().required(),
-    DB_USER: joi.string().required(),
-    DB_PASSWORD: joi.string().required(),
+    POSTGRES_URL: joi.string().required(),
   })
   .unknown(true);
 
@@ -47,11 +39,7 @@ const envVars: EnvVars = value;
 export const envs = {
   port: envVars.PORT,
   //DATABASE
-  dbHost: envVars.DB_HOST,
-  dbPort: envVars.DB_PORT,
-  dbName: envVars.DB_NAME,
-  dbUser: envVars.DB_USER,
-  dbPassword: envVars.DB_PASSWORD,
+  postgresUrl: envVars.POSTGRES_URL,
   //NATS SERVICE
   natsServers: envVars.NATS_SERVERS,
 };
